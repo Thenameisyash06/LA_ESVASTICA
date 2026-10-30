@@ -297,7 +297,13 @@
   border-radius: var(--radius-md);
   transition: all var(--transition-fast);
   text-decoration: none;
-  white-space: nowrap;
+  white-space: normal;
+  text-align: center;
+  line-height: 1.35;
+  overflow-wrap: break-word;
+  word-break: normal;
+  max-width: 100%;
+  box-sizing: border-box;
   border: 1.5px solid transparent;
 }
 
@@ -1434,8 +1440,26 @@
 }
 
 
-/* Mobile Responsive Adaptations for Floating Actions & Modals */
+/* Mobile Responsive Adaptations for Floating Actions, Modals & Buttons */
 @media (max-width: 768px) {
+  .btn {
+    white-space: normal;
+    text-align: center;
+    line-height: 1.35;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .btn-lg {
+    padding: 0.85rem 1.15rem;
+    font-size: 0.95rem;
+    line-height: 1.35;
+  }
+
+  .form-group .btn {
+    width: 100%;
+    padding: 0.85rem 1rem;
+  }
   .floating-actions {
     bottom: max(1.25rem, env(safe-area-inset-bottom, 1.25rem));
     right: max(0.85rem, env(safe-area-inset-right, 0.85rem));
