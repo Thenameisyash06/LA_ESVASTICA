@@ -15,6 +15,7 @@ void main() {
 
 const STREAKS = `#version 300 es
 precision highp float;
+precision highp int;
 uniform vec2 uView;
 uniform float uZoom;
 uniform float uPhase;
@@ -41,11 +42,11 @@ const float SPACING = 0.005;
 const float REACH = 0.32;
 
 uint scramble(uint x) {
-  x ^= x >> 16;
+  x ^= x >> 16u;
   x *= 0x7feb352du;
-  x ^= x >> 15;
+  x ^= x >> 15u;
   x *= 0x846ca68bu;
-  x ^= x >> 16;
+  x ^= x >> 16u;
   return x;
 }
 
@@ -66,7 +67,8 @@ float orb(float d, float r) {
 
 void main() {
   vec2 frag = gl_FragCoord.xy;
-  vec2 screen = (2.0 * frag - uView) / uView.x;
+  float refDim = (uView.x < uView.y) ? (uView.y * 0.56) : uView.x;
+  vec2 screen = (2.0 * frag - uView) / refDim;
   vec2 p = screen;
   mat2 warp = mat2(1.0);
   if (uLens.z > 0.0) {
@@ -96,7 +98,7 @@ void main() {
     (hit.y * stepX.z - hit.z * stepX.y) / ring,
     stepY.x,
     (hit.y * stepY.z - hit.z * stepY.y) / ring
-  ) * warp * (2.0 / uView.x);
+  ) * warp * (2.0 / refDim);
 
   vec2 gradX = vec2(jacobian[0][0], jacobian[1][0]);
   vec2 gradTheta = vec2(jacobian[0][1], jacobian[1][1]);
@@ -134,9 +136,10 @@ void main() {
       if (k >= uColumns) break;
       float column = nearest + side * float(k);
       float across = (x - column * SPACING) / scale;
-      uint seed = scramble(uint(int(column) + 65536) + uint(layer) * 0x9e3779b9u);
+      uint col = uint(int(floor(column)) + 100000);
+      uint seed = scramble(col + uint(layer) * 0x9e3779b9u);
       uint next = scramble(seed);
-      float hue = unit(seed >> 16);
+      float hue = unit(seed >> 16u);
       float delta = theta - uPhase * (1.0 + floor(unit(seed) * 16.0) / 16.0) - unit(next) * period;
       delta -= period * floor(delta / period + 0.5);
       float ahead = delta * along - across * skew;
@@ -497,12 +500,14 @@ const Lightfall = ({
       palette.fill(0);
       for (let i = 0; i < MAX_COLORS; i++) palette.set(list[Math.min(i, list.length - 1)], i * 3);
 
-      const toScreenX = value => (2 * value - width) / width;
-      const toScreenY = value => (2 * value - height) / width;
+      const refDim = (width < height) ? (height * 0.56) : width;
+      const toScreenX = value => (2 * value - width) / refDim;
+      const toScreenY = value => (2 * value - height) / refDim;
+      const effectiveZoom = (width < height) ? Math.min(2.1, s.zoom * 0.75) : s.zoom;
 
       const r = pass(scene, streakProgram);
       gl.uniform2f(r.uView, width, height);
-      gl.uniform1f(r.uZoom, s.zoom);
+      gl.uniform1f(r.uZoom, effectiveZoom);
       gl.uniform1f(r.uPhase, clock % (16 * period));
       gl.uniform1f(r.uTwinkleClock, clock % TAU);
       gl.uniform1f(r.uRings, rings);
@@ -657,7 +662,9 @@ const Lightfall = ({
       pointer.x = point.x;
       pointer.y = point.y;
       pointer.inside = true;
-      pointer.held = true;
+      if (event.pointerType !== 'touch') {
+        pointer.held = true;
+      }
       wake();
     };
 
@@ -691,6 +698,8 @@ const Lightfall = ({
     window.addEventListener('pointerdown', onPointerDown, { passive: true });
     window.addEventListener('pointerup', onPointerUp, { passive: true });
     window.addEventListener('pointercancel', onPointerUp, { passive: true });
+    window.addEventListener('touchend', onPointerUp, { passive: true });
+    window.addEventListener('touchcancel', onPointerUp, { passive: true });
     document.documentElement.addEventListener('pointerleave', onPointerLeave);
     document.addEventListener('visibilitychange', onVisibility);
     resize();
