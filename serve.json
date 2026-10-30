@@ -1,0 +1,13 @@
+{
+  "cleanUrls": false,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/index", "destination": "/index.html" },
+    { "source": "/about", "destination": "/about.html" },
+    { "source": "/gold-testing", "destination": "/gold-testing.html" },
+    { "source": "/partnerships", "destination": "/partnerships.html" },
+    { "source": "/digital-solutions", "destination": "/digital-solutions.html" },
+    { "source": "/watch-services", "destination": "/watch-services.html" },
+    { "source": "/contact", "destination": "/contact.html" }
+  ]
+}

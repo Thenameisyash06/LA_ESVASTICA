@@ -1,0 +1,47 @@
+/* ==========================================================================
+   LA ESVASTICA PRIVATE LIMITED - ANIMATED CONTENT (REACT BITS VARIANT)
+   Styles for AnimatedContent GSAP & CSS Fallback Animations
+   ========================================================================== */
+
+/* Base visibility & hardware acceleration */
+.animated-content,
+[data-animated-content],
+.vertical-card,
+.feature-box,
+.director-card,
+.step-card,
+.form-card,
+.hero-image-card,
+.hero-floating-card,
+.hero-stat {
+  will-change: transform, opacity;
+}
+
+/* Fallback styling when JS is enabled before animation starts */
+html.js .animated-content-initial {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Settle state: clean transform for flawless hover states */
+.animated-content-settled {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  filter: none !important;
+}
+
+/* Accessibility: Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .animated-content,
+  [data-animated-content],
+  .animated-content-initial,
+  .animated-content-settled {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "la-esvastica-website",
+  "version": "1.0.0",
+  "description": "Corporate website for La Esvastica Private Limited",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "serve": "serve . -p 3000",
+    "vite": "vite --port 3000"
+  },
+  "dependencies": {
+    "@hugeicons/core-free-icons": "^0.0.1",
+    "@hugeicons/react": "^0.0.1",
+    "gsap": "^3.12.5",
+    "three": "^0.170.0"
+  },
+  "devDependencies": {
+    "vite": "^5.4.11"
+  }
+}

@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 80" width="420" height="80" fill="none" role="img" aria-label="La Esvastica Private Limited Logo">
+  <defs>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F2D082"/>
+      <stop offset="45%" stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#AA7C26"/>
+    </linearGradient>
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#132A4A"/>
+      <stop offset="100%" stop-color="#070F1E"/>
+    </linearGradient>
+    <filter id="subtleGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#070F1E" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- Precision Gold Shield Crest -->
+  <g transform="translate(10, 6)" filter="url(#subtleGlow)">
+    <!-- Outer Shield Frame -->
+    <path d="M34 2 L62 14 V40 C62 55 48 64 34 68 C20 64 6 55 6 40 V14 Z" 
+          fill="url(#shieldGrad)" stroke="url(#goldGrad)" stroke-width="2.5" stroke-linejoin="round"/>
+    
+    <!-- Inner Faceted Geometry (Representing XRF Spectrometry & Gold Crystallography) -->
+    <path d="M34 10 L52 20 V38 C52 48 42 56 34 60 C26 56 16 48 16 38 V20 Z" 
+          fill="none" stroke="url(#goldGrad)" stroke-width="1.2" stroke-opacity="0.6"/>
+
+    <!-- Central Precision Diamond / Balance Symbol -->
+    <polygon points="34,16 46,28 34,40 22,28" fill="url(#goldGrad)"/>
+    <polygon points="34,22 40,28 34,34 28,28" fill="#0B192C"/>
+    
+    <!-- Micro Calibration Marks -->
+    <line x1="34" y1="44" x2="34" y2="56" stroke="url(#goldGrad)" stroke-width="2" stroke-linecap="round"/>
+    <line x1="28" y1="50" x2="40" y2="50" stroke="url(#goldGrad)" stroke-width="1.5" stroke-linecap="round"/>
+    <circle cx="34" cy="56" r="1.5" fill="#F2D082"/>
+  </g>
+
+  <!-- Typography: Corporate Identity -->
+  <g transform="translate(88, 22)">
+    <!-- Primary Brand Wordmark -->
+    <text x="0" y="24" 
+          font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" 
+          font-size="24" 
+          font-weight="800" 
+          letter-spacing="2.8" 
+          fill="#0B192C">
+      LA ESVASTICA
+    </text>
+
+    <!-- Subtitle / Corporate Designation -->
+    <text x="1" y="44" 
+          font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" 
+          font-size="9.5" 
+          font-weight="600" 
+          letter-spacing="4.5" 
+          fill="#AA7C26">
+      PRIVATE LIMITED
+    </text>
+
+    <!-- Technology & Trust Badge Line -->
+    <line x1="150" y1="41" x2="270" y2="41" stroke="#E2E8F0" stroke-width="1"/>
+  </g>
+</svg>

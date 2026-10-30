@@ -1,0 +1,199 @@
+/* ==========================================================================
+   LA ESVASTICA PRIVATE LIMITED - BRANCHED MENU (REACT BITS COMPONENT)
+   Single-Trunk Tree Navigation for Enterprise Divisions
+   ========================================================================== */
+
+.branched-menu {
+  --bm-w: 330px;
+  --bm-ink: var(--color-navy-950, #0B192C);
+  --bm-accent: var(--color-gold-600, #B38E46);
+  --bm-line: rgba(197, 160, 89, 0.35);
+  --bm-font: 14px;
+  --bm-row: 48px;
+  --bm-indent: 42px;
+  --bm-line-w: 1.8;
+  --bm-draw: 400ms;
+  --bm-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --bm-muted: #475569;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: min(var(--bm-w), 100%);
+  padding: 0.4rem 0.5rem 0.4rem 18px;
+  color: var(--bm-ink);
+  font-family: inherit;
+  font-size: var(--bm-font);
+  line-height: 1.25;
+  box-sizing: border-box;
+}
+
+/* Left vertical rail gradient */
+.branched-menu::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: 2px;
+  width: 2px;
+  border-radius: 1px;
+  background: linear-gradient(to bottom, var(--bm-accent) 0%, var(--bm-line) 40%, rgba(197, 160, 89, 0.12) 100%);
+}
+
+/* Gliding Active Marker */
+.branched-menu__marker {
+  position: absolute;
+  top: 8px;
+  left: 2px;
+  z-index: 2;
+  width: 2.5px;
+  height: 20px;
+  border-radius: 1px;
+  background: var(--bm-accent);
+  box-shadow: 0 0 10px rgba(197, 160, 89, 0.7);
+  opacity: 0;
+  transition:
+    top 240ms var(--bm-ease-out),
+    opacity 160ms ease;
+}
+
+.branched-menu__marker[data-on] {
+  opacity: 1;
+}
+
+/* Tree Container housing SVG lines and child items */
+.branched-menu__tree {
+  position: relative;
+  padding: 6px 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* SVG Connecting Branch Lines */
+.branched-menu__lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.branched-menu__base,
+.branched-menu__reach {
+  fill: none;
+  stroke-width: var(--bm-line-w);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.branched-menu__base {
+  stroke: var(--bm-line);
+}
+
+.branched-menu__reach {
+  stroke: var(--bm-accent);
+  transition: stroke-dashoffset var(--bm-draw) var(--bm-ease-out);
+}
+
+/* Branch Child Item (Sub-Item Link) */
+.branched-menu__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: var(--bm-row);
+  margin: 0;
+  padding: 6px 10px 6px var(--bm-indent);
+  border: 0;
+  border-radius: var(--radius-sm, 6px);
+  background: none;
+  color: var(--bm-muted);
+  font: inherit;
+  text-decoration: none;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  transition: color 200ms ease, background-color 200ms ease;
+  position: relative;
+  z-index: 2;
+}
+
+.branched-menu__item:hover {
+  color: var(--bm-ink);
+  background-color: rgba(197, 160, 89, 0.08);
+}
+
+.branched-menu__item[data-active],
+.branched-menu__item.active {
+  color: var(--bm-accent);
+  background-color: rgba(197, 160, 89, 0.12);
+}
+
+.branched-menu__item[data-active] .branched-menu__label,
+.branched-menu__item.active .branched-menu__label {
+  color: var(--bm-accent);
+  font-weight: 700;
+}
+
+.branched-menu__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 5px;
+  background: rgba(197, 160, 89, 0.14);
+  color: var(--bm-accent);
+  flex-shrink: 0;
+  transition: transform var(--transition-fast, 150ms);
+}
+
+.branched-menu__item:hover .branched-menu__icon {
+  transform: scale(1.1);
+  background: rgba(197, 160, 89, 0.22);
+}
+
+.branched-menu__content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.branched-menu__label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--bm-ink);
+  white-space: nowrap;
+  line-height: 1.2;
+  transition: color 200ms ease;
+}
+
+.branched-menu__item:hover .branched-menu__label {
+  color: var(--color-navy-950, #0B192C);
+}
+
+.branched-menu__subtext {
+  font-size: 0.73rem;
+  color: var(--color-slate-500, #64748B);
+  white-space: nowrap;
+  line-height: 1.15;
+}
+
+.branched-menu__item:hover .branched-menu__subtext,
+.branched-menu__item[data-active] .branched-menu__subtext {
+  color: var(--color-slate-700, #334155);
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .branched-menu__marker,
+  .branched-menu__reach {
+    transition: none !important;
+  }
+}

@@ -1,0 +1,62 @@
+/* ==========================================================================
+   LA ESVASTICA PRIVATE LIMITED - HYPERSPEED (REACT BITS COMPONENT)
+   WebGL High-Speed Light Trails Background for Hero Section
+   ========================================================================== */
+
+.hyperspeed {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
+.hyperspeed canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.hero .hyperspeed {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.82;
+  pointer-events: auto;
+  transition: opacity 0.4s ease;
+}
+
+/* Ensure hero text, badges, cards, and buttons remain accessible and clickable */
+.hero-grid {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hero-content,
+.hero-media-wrapper,
+.hero-actions,
+.hero-stats-row,
+.hero-badge-row,
+.hero-stat,
+.hero-image-card,
+.hero-floating-card,
+.btn {
+  pointer-events: auto;
+}
+
+/* Luxury Vignette Blend over the 3D Canvas */
+.hero-hyperspeed-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at 50% 45%,
+    transparent 35%,
+    rgba(7, 15, 30, 0.4) 75%,
+    rgba(7, 15, 30, 0.85) 100%
+  );
+}

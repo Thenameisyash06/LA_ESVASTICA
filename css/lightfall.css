@@ -1,0 +1,81 @@
+/* ==========================================================================
+   LA ESVASTICA PRIVATE LIMITED - LIGHTFALL (REACT BITS COMPONENT)
+   WebGL2 Streaks of Light Background for Subpage Full-Height Heroes
+   ========================================================================== */
+
+.lightfall-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: auto;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.lightfall-canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Full Screen Height Hero Section for Subpages (Matching Index Hero) */
+.hero.page-hero-lightfall {
+  position: relative !important;
+  min-height: 100vh !important;
+  display: flex !important;
+  align-items: center !important;
+  padding-top: clamp(88px, 12vh, 112px) !important;
+  padding-bottom: clamp(2.5rem, 4vh, 4rem) !important;
+  overflow: hidden !important;
+  background: radial-gradient(circle at 80% 20%, #162F52 0%, #0B192C 70%, #060D17 100%) !important;
+  color: var(--color-white) !important;
+  isolation: isolate;
+}
+
+.hero.page-hero-lightfall .lightfall-container {
+  opacity: 0.95;
+  transition: opacity 0.4s ease;
+}
+
+/* Luxury Gradient Overlay for flawless text contrast and soft depth */
+.page-hero-lightfall-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: 
+    linear-gradient(180deg, rgba(7, 15, 30, 0.35) 0%, rgba(7, 15, 30, 0.72) 100%),
+    radial-gradient(ellipse at 50% 35%, transparent 30%, rgba(7, 15, 30, 0.82) 100%);
+}
+
+/* Content Stacking & Cursor Interaction Pass-Through */
+.hero.page-hero-lightfall .hero-grid {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hero.page-hero-lightfall .hero-content,
+.hero.page-hero-lightfall .hero-media-wrapper,
+.hero.page-hero-lightfall .hero-actions,
+.hero.page-hero-lightfall .hero-image-card,
+.hero.page-hero-lightfall .badge,
+.hero.page-hero-lightfall .btn,
+.hero.page-hero-lightfall a,
+.hero.page-hero-lightfall button {
+  pointer-events: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991px) {
+  .hero.page-hero-lightfall {
+    min-height: auto !important;
+    padding-top: 110px !important;
+    padding-bottom: 3.5rem !important;
+  }
+}
