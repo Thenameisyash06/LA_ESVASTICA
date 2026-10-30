@@ -69,6 +69,8 @@
 }
 
 html {
+  overflow-x: clip;
+  max-width: 100vw;
   font-family: var(--font-sans);
   font-size: 16px;
   line-height: 1.6;
@@ -96,11 +98,9 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  overflow-x: hidden;
-}
-
-main {
-  flex: 1 0 auto;
+  overflow-x: clip;
+  max-width: 100vw;
+  overflow-wrap: break-word;
 }
 
 img, picture, svg, video {
@@ -288,4 +288,12 @@ p.lead {
 
 .section-header.text-left .section-eyebrow::after {
   display: none;
+}
+
+
+@supports not (overflow-x: clip) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
 }

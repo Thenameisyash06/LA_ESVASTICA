@@ -140,6 +140,8 @@
 
   .form-grid {
     grid-template-columns: 1fr;
+    min-width: 0;
+    width: 100%;
   }
 
   .footer-grid {
@@ -172,22 +174,29 @@
 .mobile-drawer {
   position: fixed;
   top: 0;
-  right: -320px;
-  width: 300px;
+  right: 0;
+  width: min(300px, 85vw);
   height: 100vh;
+  height: 100dvh;
   background-color: var(--color-navy-950);
   color: var(--color-white);
   z-index: 200;
   box-shadow: -5px 0 25px rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
-  transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateX(100%);
+  visibility: hidden;
+  pointer-events: none;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s;
   padding: 1.5rem;
   overflow-y: auto;
+  box-sizing: border-box;
 }
 
 .mobile-drawer.is-open {
-  right: 0;
+  transform: translateX(0);
+  visibility: visible;
+  pointer-events: auto;
 }
 
 .drawer-header {

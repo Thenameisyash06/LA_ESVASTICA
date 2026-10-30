@@ -68,6 +68,13 @@
   box-shadow: none !important;
 }
 
+.site-header .navbar {
+  width: 100%;
+  max-width: 1200px;
+  box-sizing: border-box;
+  padding-inline: 0;
+}
+
 .navbar {
   pointer-events: auto;
   position: relative;
@@ -451,28 +458,94 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .site-header {
-    padding: 6px 0.75rem 0;
+    padding: 8px 12px 0;
   }
 
   .navbar {
-    height: 52px;
-    padding: 0 8px 0 12px;
+    height: 54px;
+    padding: 0 8px 0 14px;
+    gap: 0.5rem;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .brand-logo {
+    padding: 2px 0;
+    flex-shrink: 1;
+    min-width: 0;
   }
 
   .brand-logo img {
     height: 30px;
+    width: auto;
+    max-width: 135px;
+    object-fit: contain;
+  }
+
+  .nav-actions {
+    gap: 0.5rem;
+    flex-shrink: 0;
   }
 
   .nav-cta-btn {
     height: 34px;
-    padding: 0 12px;
+    padding: 0 14px;
     font-size: 0.8rem;
     gap: 0.35rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .site-header {
+    padding: 6px 10px 0;
+  }
+
+  .navbar {
+    height: 50px;
+    padding: 0 6px 0 10px;
+    gap: 0.35rem;
+  }
+
+  .brand-logo img {
+    height: 26px;
+    max-width: 120px;
+  }
+
+  .nav-cta-btn {
+    height: 32px;
+    padding: 0 10px;
+    font-size: 0.76rem;
   }
 
   .nav-cta-btn svg {
     display: none;
+  }
+}
+
+@media (max-width: 420px) {
+  .site-header {
+    padding: 6px 8px 0;
+  }
+
+  .navbar {
+    height: 48px;
+    padding: 0 6px 0 10px;
+  }
+
+  .brand-logo img {
+    height: 24px;
+    max-width: 115px;
+  }
+
+  .nav-cta-btn {
+    display: none; /* In ultra-compact mobile, hamburger opens full menu with prominent CTA */
+  }
+
+  .mobile-toggle {
+    width: 36px;
+    height: 36px;
   }
 }
