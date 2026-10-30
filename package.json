@@ -5,17 +5,10 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "node server.js",
-    "serve": "serve . -p 3000",
-    "vite": "vite --port 3000"
+    "dev": "node server.js"
   },
   "dependencies": {
-    "@hugeicons/core-free-icons": "^0.0.1",
-    "@hugeicons/react": "^0.0.1",
     "gsap": "^3.12.5",
     "three": "^0.170.0"
-  },
-  "devDependencies": {
-    "vite": "^5.4.11"
   }
 }
